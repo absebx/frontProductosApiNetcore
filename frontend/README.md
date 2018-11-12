@@ -4,6 +4,6 @@ yarn install
 
 yarn start
 
-http://localhost:3000/
+http://localhost:3000/app
 
-http://localhost:3000/cliente
+http://localhost:3000/app/cliente

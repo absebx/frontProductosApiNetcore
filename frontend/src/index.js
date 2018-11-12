@@ -9,7 +9,7 @@ import NotFound from './componentes/NotFound';
 
 const Root = () => {
     return (
-        <Router basename="/sonda">
+        <Router basename="/app">
             <Switch>
                 <Route exact path="/" component={App} />
                 <Route exact path="/cliente" component={Cliente} />
