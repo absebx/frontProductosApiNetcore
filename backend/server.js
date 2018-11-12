@@ -29,7 +29,7 @@ router.get('/', function(req, res) {
 });
 
 //ruteo de apis
-//router.get('/cliente', clienteapi.obtenerclientes);
+router.get('/cliente', clienteapi.obtenerclientes);
 
 //configura el contexto de la aplicación
 app.use('/' + appconfig.apipath, router);
