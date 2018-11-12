@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+
 
 const config = {
     headers: {
@@ -30,7 +32,8 @@ const styles = theme => ({
     },
       input: {
         display: 'none',
-    },    
+    },
+    
 });
 
 class Cliente extends Component {
@@ -44,18 +47,49 @@ class Cliente extends Component {
             apellido:'',
             tipocliente:'',
             estado:'',
-            open: false,
-            nombrecomponente:'Cliente',
+            nombrecomponente:'Ingreso Cliente',
         };
+    }
+
+    handleClick = () => {
+
+        if( this.state.id !== '' && 
+            this.state.rut !== '' &&
+            this.state.nombre !== '' &&
+            this.state.apellido !== '' &&
+            this.state.tipocliente !== '' &&
+            this.state.estado !== ''){
+
+            axios.post('http://localhost:4000/app/cliente/crear', {
+                'id': this.state.id,
+                'rut': this.state.rut,
+                'nombre': this.state.nombre,
+                'apellido': this.state.apellido,
+                'tipocliente': this.state.tipocliente,
+                'estado': this.state.estado
+            }, config)
+                .then((result) => {
+                    if (result.status === 200){
+                            window.location.href = "/app/cliente";
+                    }else{
+                        alert(result.data.mensaje);
+                    }
+            })
+            .catch((err) => {
+                alert(err);
+            })
+        }else{
+            alert('Debe llenar los campos');
+        }
     }
 
     render () {
         const { classes } = this.props;
         return (
             <div>
+            <center>
                 <br/>
-				<br/>
-                <center>
+                <br/>
                 <TextField
                     id="id"
                     label="id"
