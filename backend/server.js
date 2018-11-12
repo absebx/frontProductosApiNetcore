@@ -30,6 +30,7 @@ router.get('/', function(req, res) {
 
 //ruteo de apis
 router.get('/cliente', clienteapi.obtenerclientes);
+router.get('/cliente/traer', clienteapi.obtenercliente);
 
 //configura el contexto de la aplicación
 app.use('/' + appconfig.apipath, router);
