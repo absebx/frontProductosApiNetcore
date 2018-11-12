@@ -28,6 +28,7 @@ const styles = theme => ({
       width: 200,
     },
     button: {
+        width: 200,
         margin: theme.spacing.unit,
     },
       input: {
@@ -51,7 +52,7 @@ class Cliente extends Component {
         };
     }
 
-    handleClick = () => {
+    handleClickCrear = () => {
 
         if( this.state.id !== '' && 
             this.state.rut !== '' &&
@@ -83,12 +84,19 @@ class Cliente extends Component {
         }
     }
 
+    handleClickLeer = () => {
+        alert('Cliente cargado');
+    }
+
+    handleClickActualizar = () => {
+        alert('Cliente actuazado');
+    }
+
     render () {
         const { classes } = this.props;
         return (
             <div>
             <center>
-                <br/>
                 <br/>
                 <TextField
                     id="id"
@@ -154,9 +162,27 @@ class Cliente extends Component {
                     variant="contained"
                     color="primary"
                     className={classes.button}
-                    onClick={this.handleClick}
+                    onClick={this.handleClickCrear}
                 >
-                Guardar
+                Crear
+                </Button >
+                <br/>
+                <Button  
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.handleClickLeer}
+                >
+                Leer
+                </Button >
+                <br/>
+                <Button  
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.handleClickActualizar}
+                >
+                Actualizar
                 </Button >
                 </center>
             </div>
