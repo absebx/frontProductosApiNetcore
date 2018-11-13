@@ -1,5 +1,10 @@
 ## Backend
 
+
+	Taller práctico de desarrollo en ReactJS con API REST
+	Por: Alvaro Fuentes P.
+	E-mail: alvaro.fuentesp@sonda.com
+
 npm install
 
 nodemon server
@@ -23,8 +28,22 @@ http://localhost:4000/api/cliente
 
 API con SQLite3
 
-Petición GET taer todos
-
+GET
 http://localhost:4000/api/clientedb/todos
+
+POST
+http://localhost:4000/api/clientedb/create
+
+GET
+http://localhost:4000/api/clientedb/read
+
+POST
+http://localhost:4000/api/clientedb/update
+
+POST
+http://localhost:4000/api/clientedb/delete
+
+
+
 
 
