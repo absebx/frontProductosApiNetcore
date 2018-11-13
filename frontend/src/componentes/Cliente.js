@@ -72,7 +72,7 @@ class Cliente extends Component {
                 .then((result) => {
                     if (result.status === 200){
                             alert(result.data.mensaje);
-                            window.location.href = "/app/cliente";    
+                            //window.location.href = "/app/cliente";    
                     }else{
                         alert(result.data.mensaje);
                     }
@@ -109,7 +109,7 @@ class Cliente extends Component {
             .then((result) => {
                 if (result.status === 200){
                         alert(result.data.mensaje);
-                        window.location.href = "/app/cliente";    
+                        //window.location.href = "/app/cliente";    
                 }else{
                     alert(result.data.mensaje);
                 }
@@ -132,7 +132,7 @@ class Cliente extends Component {
                 .then((result) => {
                     if (result.status === 200){
                             alert(result.data.mensaje);
-                            window.location.href = "/app/cliente";    
+                            //window.location.href = "/app/cliente";    
                     }else{
                         alert(result.data.mensaje);
                     }
