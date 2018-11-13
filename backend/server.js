@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 //carga apis
 var clienteapi = require('./apis/clienteroutes');
+var clientedbapi = require('./apis/clientedbroutes');
 
 //inicia express
 var app = express();
@@ -32,11 +33,19 @@ router.get('/', function(req, res) {
 router.get('/cliente', clienteapi.obtenerclientes);
 router.get('/cliente/traer', clienteapi.obtenercliente);
 
+router.get('/clientedb/todos', clientedbapi.todos);
+router.post('/clientedb/create', clientedbapi.create);
+router.get('/clientedb/read', clientedbapi.read);
+router.post('/clientedb/update', clientedbapi.update);
+router.post('/clientedb/delete', clientedbapi.delete);
+
+
+
 //configura el contexto de la aplicación
 app.use('/' + appconfig.apipath, router);
 
 app.disable('etag'); // deshabilita el cache http
 app.listen(appconfig.port);
-console.log("servidor encendido");
+console.log("Backend Encendido");
 
 
