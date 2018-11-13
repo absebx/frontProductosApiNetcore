@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 //carga apis
 var clienteapi = require('./apis/clienteroutes');
 var clientedbapi = require('./apis/clientedbroutes');
+var cuentadbapi = require('./apis/cuentadbroutes');
 
 //inicia express
 var app = express();
@@ -39,6 +40,11 @@ router.get('/clientedb/read', clientedbapi.read);
 router.post('/clientedb/update', clientedbapi.update);
 router.post('/clientedb/delete', clientedbapi.delete);
 
+router.get('/cuentadb/todos', cuentadbapi.todos);
+router.post('/cuentadb/create', cuentadbapi.create);
+router.get('/cuentadb/read', cuentadbapi.read);
+router.post('/cuentadb/update', cuentadbapi.update);
+router.post('/cuentadb/delete', cuentadbapi.delete);
 
 
 //configura el contexto de la aplicación
