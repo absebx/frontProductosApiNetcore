@@ -61,7 +61,7 @@ class Cliente extends Component {
             this.state.tipocliente !== '' &&
             this.state.estado !== ''){
 
-            axios.post('http://localhost:4000/app/cliente/crear', {
+            axios.post('http://localhost:4000/api/clientedb/create', {
                 'id': this.state.id,
                 'rut': this.state.rut,
                 'nombre': this.state.nombre,
@@ -71,7 +71,8 @@ class Cliente extends Component {
             }, config)
                 .then((result) => {
                     if (result.status === 200){
-                            window.location.href = "/app/cliente";
+                            alert(result.data.mensaje);
+                            window.location.href = "/app/cliente";    
                     }else{
                         alert(result.data.mensaje);
                     }
@@ -89,7 +90,59 @@ class Cliente extends Component {
     }
 
     handleClickActualizar = () => {
-        alert('Cliente actuazado');
+        if( 
+        this.state.id !== '' && 
+        this.state.rut !== '' &&
+        this.state.nombre !== '' &&
+        this.state.apellido !== '' &&
+        this.state.tipocliente !== '' &&
+        this.state.estado !== ''){
+
+        axios.post('http://localhost:4000/api/clientedb/update', {
+            'id': this.state.id,
+            'rut': this.state.rut,
+            'nombre': this.state.nombre,
+            'apellido': this.state.apellido,
+            'tipocliente': this.state.tipocliente,
+            'estado': this.state.estado
+        }, config)
+            .then((result) => {
+                if (result.status === 200){
+                        alert(result.data.mensaje);
+                        window.location.href = "/app/cliente";    
+                }else{
+                    alert(result.data.mensaje);
+                }
+        })
+        .catch((err) => {
+            alert(err);
+        })
+    }else{
+        alert('Debe llenar los campos');
+    }
+}
+
+    handleClickEliminar = () => {
+        if( 
+            this.state.id !== ''){
+    
+            axios.post('http://localhost:4000/api/clientedb/delete', {
+                'id': this.state.id
+            }, config)
+                .then((result) => {
+                    if (result.status === 200){
+                            alert(result.data.mensaje);
+                            window.location.href = "/app/cliente";    
+                    }else{
+                        alert(result.data.mensaje);
+                    }
+            })
+            .catch((err) => {
+                alert(err);
+            })
+        }else{
+            alert('Debe llenar los campos');
+        }
     }
 
     render () {
@@ -183,6 +236,15 @@ class Cliente extends Component {
                     onClick={this.handleClickActualizar}
                 >
                 Actualizar
+                </Button >
+                <br/>
+                <Button  
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.handleClickEliminar}
+                >
+                Eliminar
                 </Button >
                 </center>
             </div>
