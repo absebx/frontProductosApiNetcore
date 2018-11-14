@@ -1,3 +1,9 @@
+/*
+	Taller práctico de desarrollo en ReactJS con API REST
+	Por: Alvaro Fuentes P.
+	E-mail: alvaro.fuentesp@sonda.com
+*/
+
 //carga archivo de configuración
 var appconfig = require("./config");
 
