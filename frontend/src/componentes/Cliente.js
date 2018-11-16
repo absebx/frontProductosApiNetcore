@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
+import Menu from '../layout/Menu';
 
 const config = {
     headers: {
@@ -149,8 +150,8 @@ class Cliente extends Component {
         const { classes } = this.props;
         return (
             <div>
+                <Menu/>
             <center>
-                <br/>
                 <TextField
                     id="id"
                     label="id"
