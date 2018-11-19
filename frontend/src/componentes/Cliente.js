@@ -62,20 +62,23 @@ class Cliente extends Component {
             this.state.tipocliente !== '' &&
             this.state.estado !== ''){
 
-            axios.post('http://localhost:4000/api/clientedb/create', {
+            //axios.post('http://localhost:4000/api/clientedb/create', {
+            axios.post('http://localhost:5000/api/v1/cliente', {
                 'id': this.state.id,
                 'rut': this.state.rut,
                 'nombre': this.state.nombre,
                 'apellido': this.state.apellido,
                 'tipocliente': this.state.tipocliente,
                 'estado': this.state.estado
-            }, config)
+            },  )
                 .then((result) => {
                     if (result.status === 200){
-                            alert(result.data.mensaje);
+                            //alert(result.data.mensaje);
+                            alert("Cliente creado");
                             //window.location.href = "/app/cliente";    
                     }else{
-                        alert(result.data.mensaje);
+                        //alert(result.data.mensaje);
+                        alert("Error");
                     }
             })
             .catch((err) => {
