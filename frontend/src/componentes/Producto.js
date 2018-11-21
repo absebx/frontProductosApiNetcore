@@ -14,12 +14,17 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
+import AddIcon from '@material-ui/icons/Add';
+import Icon from '@material-ui/core/Icon';
+import Modal from '@material-ui/core/Modal';
 
 
 const styles = theme => ({
@@ -29,6 +34,16 @@ const styles = theme => ({
         flexDirection: 'column',
         alignItems: 'center',
         padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    },
+    paperModal: {
+        position: 'absolute',
+        width: theme.spacing.unit * 50,
+        backgroundColor: theme.palette.background.paper,
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing.unit * 4,
+        top: '25vh',
+        left: '25vw'
+        
     },
     root: {
       width: '100%',
@@ -63,6 +78,7 @@ class Producto extends Component {
         super(props);
             this.state = {
                 datos : [],
+                showModal: false,
                 producto: {
                     id: 0,
                     codProducto: "",
@@ -93,7 +109,7 @@ class Producto extends Component {
           .then((resp) => {
             console.log(resp);
             this.cargarProductos();
-            this.resetProducto();
+            this.handleClose();
           })
           .catch((err)=>{
             console.log(err);
@@ -153,6 +169,15 @@ class Producto extends Component {
         this.setState({producto: productoAux});
 
     }
+
+    handleClose = ()=>{
+        this.resetProducto();
+        this.setState({showModal: false});
+    }
+
+    handleOpen = ()=>{
+        this.setState({showModal: true});
+    }
     // obtener productos
 
 
@@ -163,55 +188,71 @@ class Producto extends Component {
                 <Menu/> 
                 <h1>Componente de productos</h1>
                 <h3>Agregar nuevo producto</h3>
-                <div>
-                    <Paper className={classes.paper}>
-                        <form className={classes.form}>
-                            <FormControl margin="normal" required fullWidth>
-                                <TextField
-                                    id="codigoProducto"
-                                    label="Código producto"
-                                    value={this.state.producto.codProducto}
-                                    onChange={e => this.handleChange(e)}
-                                    type="number"
-                                    className={classNames(classes.textField, classes.dense)}
-                                    // InputLabelProps={{
-                                    //     shrink: true,
-                                    // }}
-                                    margin="normal"
-                                />
-                                <TextField
-                                    id="tipoProducto"
-                                    label="Tipo procucto"
-                                    className={classes.textField}
-                                    value={this.state.producto.tipoProducto}
-                                    onChange={e => this.handleChange(e)}
-                                    margin="normal"
-                                />
-                                 <TextField
-                                    id="saldoMinimo"
-                                    label="Saldo minimo"
-                                    value={this.state.producto.saldoMinimo}
-                                    onChange={e => this.handleChange(e)}
-                                    type="number"
-                                    className={classNames(classes.textField, classes.dense)}
-                                    // InputLabelProps={{
-                                    //     shrink: true,
-                                    // }}
-                                    margin="normal"
-                                />
-                            </FormControl>
-                            <Button variant="contained" color="primary" className={classes.button} onClick={this.ingresar}>
-                                Ingresar
-                            </Button>
-                            <Button variant="contained" color="primary" className={classes.button} onClick={this.leer}>
-                                Leer 
-                            </Button>
-                            <Button variant="contained" color="primary" className={classes.button} onClick={this.resetProducto}>
-                                Limpiar 
-                            </Button>
-                        </form>
-                    </Paper>
-                </div>
+                <Tooltip title="Agregar">
+                    <Button variant="contained" color="primary" className={classes.button} onClick={this.handleOpen}>
+                        <AddIcon />
+                    </Button>
+                </Tooltip>
+
+                <Modal
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description"
+                open={this.state.showModal}
+                onClose={this.handleClose}
+                >
+                    <div className={classes.paperModal}>
+                        <Typography variant="h6" id="modal-title">
+                            Agregar Producto
+                        </Typography>
+                        <Typography variant="subtitle1" id="simple-modal-description">
+                            <form className={classes.form}>
+                                <FormControl margin="normal" required fullWidth>
+                                    <TextField
+                                        id="codigoProducto"
+                                        label="Código producto"
+                                        value={this.state.producto.codProducto}
+                                        onChange={e => this.handleChange(e)}
+                                        type="number"
+                                        className={classNames(classes.textField, classes.dense)}
+                                        // InputLabelProps={{
+                                        //     shrink: true,
+                                        // }}
+                                        margin="normal"
+                                    />
+                                    <TextField
+                                        id="tipoProducto"
+                                        label="Tipo procucto"
+                                        className={classes.textField}
+                                        value={this.state.producto.tipoProducto}
+                                        onChange={e => this.handleChange(e)}
+                                        margin="normal"
+                                    />
+                                    <TextField
+                                        id="saldoMinimo"
+                                        label="Saldo minimo"
+                                        value={this.state.producto.saldoMinimo}
+                                        onChange={e => this.handleChange(e)}
+                                        type="number"
+                                        className={classNames(classes.textField, classes.dense)}
+                                        // InputLabelProps={{
+                                        //     shrink: true,
+                                        // }}
+                                        margin="normal"
+                                    />
+                                </FormControl>
+                                <Button variant="contained" color="primary" className={classes.button} onClick={this.ingresar}>
+                                    Ingresar
+                                </Button>
+                                <Button variant="contained" color="primary" className={classes.button} onClick={this.leer}>
+                                    Leer 
+                                </Button>
+                                <Button variant="contained" color="primary" className={classes.button} onClick={this.resetProducto}>
+                                    Limpiar 
+                                </Button>
+                            </form>
+                        </Typography>
+                    </div>
+                </Modal>
 
                 <div>
                     <Paper className={classes.root}>
@@ -236,7 +277,7 @@ class Producto extends Component {
                                             <TableCell>{producto.saldoMinimo}</TableCell>
                                             <TableCell>{producto.estado}</TableCell>
                                             <TableCell>
-                                            <Button variant="contained" color="primary" className={classes.button} onClick={()=>{this.borrar(producto.codProducto)}}>
+                                            <Button variant="contained" color="secondary" className={classes.button} onClick={()=>{this.borrar(producto.codProducto)}}>
                                                 Borrar 
                                             </Button>
                                             </TableCell>
