@@ -5,6 +5,7 @@ import './index.css';
 
 import App from './App';
 import Cliente from './componentes/Cliente';
+import Producto from './componentes/Producto';
 import NotFound from './componentes/NotFound';
 
 const Root = () => {
@@ -13,6 +14,7 @@ const Root = () => {
             <Switch>
                 <Route exact path="/" component={App} />
                 <Route exact path="/cliente" component={Cliente} />
+                <Route exact path="/producto" component={Producto} />
                 <Route component={NotFound} />
             </Switch>
         </Router>

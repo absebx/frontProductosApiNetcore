@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -36,7 +37,7 @@ class Menu extends Component {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Taller ReactJS
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" href="./Producto">Producto</Button>
         </Toolbar>
       </AppBar>
     </div>
